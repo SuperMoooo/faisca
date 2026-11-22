@@ -1,0 +1,117 @@
+# Architecture
+
+This project is a **modular monolith**: one FastAPI app, one deploy and one
+database, split inside into **modules**, one per business area (orders,
+billing, users). Each module lives in `src/faisca/modules/<name>/`
+and keeps its own tables, rules and endpoints.
+
+## Modules and their walls
+
+```
+            api/v1/router.py  (mounts every module's router)
+                 │                    │
+                 ▼                    ▼
+   modules/orders/            modules/billing/
+     router · service ···········▶ public.py ── the only door in
+     repository · models           router · service
+                                   repository · models     (private)
+```
+
+A module may use another one only through that module's `public.py`, which
+hands out schemas and functions, never its SQLAlchemy models. So `billing`
+can rename a column, split a table or rewrite a query, and `orders` never
+notices as long as `public.py` keeps its promises. `uv run lint-imports`
+(import-linter, configured in `pyproject.toml`) fails CI when a module
+reaches past that door.
+
+A module is a business area, not a single table: models that always change
+together (an order and its lines) belong in the same module, and may import
+each other freely.
+
+## The layers
+
+```
+HTTP request
+   │
+   ▼
+router.py        parses the request into a schema, calls the service, returns a schema
+   │                 knows HTTP; knows nothing about SQL
+   ▼
+service.py       the business rules; decides when the work is complete and commits
+   │                 raises AppError (NotFoundError, ConflictError…), never HTTPException
+   ▼
+repository.py    the database calls for one table; flushes, never commits
+   │                 the only layer that writes select() / insert / update
+   ▼
+AsyncSession     one per request (db/session.py), closed when the request ends
+```
+
+`schemas.py` holds the Pydantic models at the edge (`<Name>Create`,
+`<Name>Update`, `<Name>Read`); `models.py` holds the SQLAlchemy table. A
+router never returns a model object; it returns a `Read` schema built from it.
+
+`dependencies.py` wires the chain for FastAPI: the session goes into the
+repository, the repository into the service, the service into the router.
+
+## Mock responses
+
+With `MOCK_RESPONSES=true`, `dependencies.py` hands the router the module's
+`<Name>MockService` (`mocks.py`) instead of the real service. It is a
+subclass, so the router cannot tell the difference: same URLs, same
+schemas, same 404s, but the data comes from fixed samples and nothing is
+stored. Every response carries `X-Mock-Response: true`. A client app can
+then be built and tested before any real data exists, or with no database
+running. `Settings` refuses the flag when `ENVIRONMENT=production`.
+
+## Rules
+
+1. **Imports only go down**: router → service → repository. A repository never
+   imports a service; a service never imports FastAPI.
+2. **Modules meet only at `public.py`.** Never import another module's
+   models, repository, service or schemas; add what you need to its
+   `public.py` instead. A foreign key across modules is a string,
+   `ForeignKey("orders.id")`, which needs no import.
+3. **Services commit; repositories flush.** A request that fails halfway
+   commits nothing.
+4. **Errors are `AppError`s** from `core/errors.py`. The handler there turns each
+   into `{"error": {"code", "message"}}` with the right status.
+5. **Configuration comes from `Settings`** (`core/config.py`), read from the
+   environment; never `os.environ` in module code, never a secret in code.
+6. **Every schema change is a migration**: change `models.py`, then
+   `uv run alembic revision --autogenerate -m "..."`, read the file it wrote,
+   and commit both.
+
+## A request, step by step
+
+`POST /api/v1/orders` with `{"name": "First"}`:
+
+1. `main.py` mounted `api/v1/router.py` at `/api/v1`; it includes the orders router.
+2. FastAPI validates the body into `OrderCreate` (a 422 if it does not fit).
+3. It calls `get_order_service` (`dependencies.py`), which asks for a session
+   (`db/session.py`) and builds `OrderRepository` → `OrderService`.
+4. `OrderService.create` builds an `Order`, calls `repository.add` (INSERT,
+   flush, refresh) and commits.
+5. The router returns `OrderRead.model_validate(order)`; FastAPI serialises it
+   with status 201.
+6. The request ends; the session closes.
+
+## Adding a module
+
+```bash
+moarch-py create module invoices
+```
+
+writes `public.py`, the six layers and their tests, registers the router in `api/v1/router.py`
+and the model in `db/models.py` (at the `# moarch:` anchors — keep them).
+Then fill in the model's columns and create its migration.
+
+## Adding a model to a module
+
+```bash
+moarch-py create model orders order_lines
+```
+
+adds `OrderLine`, its schemas and `OrderLineRepository` to the orders module's
+own `models.py`, `schemas.py` and `repository.py` (at their `# moarch:`
+anchors), registers it in `db/models.py` and writes a repository test. It gets
+no router or service of its own: the module's service decides how it is used.

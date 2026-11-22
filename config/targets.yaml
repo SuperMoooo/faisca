@@ -1,0 +1,262 @@
+# Catálogos e fontes de cópias digitais pesquisados pelo Faísca.
+#
+# Cada alvo foi verificado em direto em 2026-11-21 (pesquisa + leitura de um
+# registo). Para acrescentar um alvo, copie um bloco do mesmo protocolo, mude
+# o `id` (único, minúsculas) e reinicie a aplicação; o README explica cada campo.
+#
+# Z39.50: host / port / database vêm do registo IRSpy, da página do serviço
+# ZZZ (https://zzz.porbase.org → detalhes de cada servidor) ou da biblioteca.
+# `charset` é o conjunto de caracteres em que o servidor envia o MARC
+# (iso5426, marc8 ou utf-8); o YAZ converte-o para UTF-8.
+# SRU: os índices CQL diferem de servidor para servidor (ver `indexes`).
+
+catalogues:
+  # ── Portugal ────────────────────────────────────────────────────────────
+  - id: porbase
+    name: PORBASE — Base Nacional de Dados Bibliográficos
+    country: PT
+    protocol: z3950
+    format: unimarc
+    host: z3950.porbase.bnportugal.gov.pt
+    port: 210
+    database: porbase
+    record_syntax: unimarc
+    charset: iso5426
+    timeout_seconds: 20
+    verified_on: 2026-11-21
+    notes: Endereço publicado nos detalhes do serviço ZZZ (zzz.porbase.org).
+
+  - id: bnp
+    name: Biblioteca Nacional de Portugal — Catálogo
+    country: PT
+    protocol: z3950
+    format: unimarc
+    host: z3950.catalogo.bnportugal.gov.pt
+    port: 210
+    database: bn
+    record_syntax: unimarc
+    charset: iso5426
+    timeout_seconds: 20
+    verified_on: 2026-11-21
+    notes: Os registos com 856 $u para purl.pt têm cópia na Biblioteca Nacional Digital.
+
+  - id: blx
+    name: Rede de Bibliotecas de Lisboa
+    country: PT
+    protocol: z3950
+    format: unimarc
+    host: z3950.cm-lisboa.pt
+    port: 210
+    database: rbml
+    record_syntax: unimarc
+    charset: iso5426
+    # Intermitente: um limite curto evita que atrase toda a pesquisa.
+    timeout_seconds: 12
+    verified_on: 2026-11-21
+    notes: Responde de forma intermitente (dois de quatro testes deram timeout).
+
+  - id: bm-portimao
+    name: Biblioteca Municipal Manuel Teixeira Gomes — Portimão
+    country: PT
+    protocol: z3950
+    format: unimarc
+    host: z3950.bmmtgomes.pt
+    port: 2100
+    database: biblios
+    record_syntax: unimarc
+    charset: utf-8
+    verified_on: 2026-11-21
+    notes: Koha; envia UTF-8.
+
+  # ── Europa ──────────────────────────────────────────────────────────────
+  - id: bnf
+    name: Bibliothèque nationale de France
+    country: FR
+    protocol: sru
+    format: unimarc
+    url: https://catalogue.bnf.fr/api/SRU
+    sru_version: "1.2"
+    record_schema: unimarcxchange
+    relation: all
+    indexes:
+      title: bib.title
+      author: bib.author
+      isbn: bib.isbn
+      year: bib.date
+    verified_on: 2026-11-21
+    notes: UNIMARC nativo. O ISBN só coincide na forma catalogada (10 ou 13 dígitos); o Faísca envia as duas.
+
+  - id: sudoc
+    name: SUDOC — catálogo coletivo das universidades francesas
+    country: FR
+    protocol: sru
+    format: unimarc
+    url: https://www.sudoc.abes.fr/cbs/sru/
+    sru_version: "1.1"
+    record_schema: unimarc
+    indexes:
+      title: mti
+      author: aut
+      isbn: isb
+      year: apu
+      control_number: ppn
+    verified_on: 2026-11-21
+    notes: UNIMARC nativo; índices PICA.
+
+  - id: sbn
+    name: Servizio Bibliotecario Nazionale (Itália)
+    country: IT
+    protocol: z3950
+    format: unimarc
+    host: opac.sbn.it
+    port: 2100
+    database: nopac
+    record_syntax: unimarc
+    charset: utf-8
+    verified_on: 2026-11-21
+    notes: >-
+      UNIMARC nativo. Marca os artigos iniciais com U+0088/U+0089, normalizados para
+      U+0098/U+009C. Teve falhas temporárias ("Temporary system error") e não aceita
+      pesquisa por número de registo (Bib-1 12): os registos só abrem enquanto estão em cache.
+
+  - id: bne
+    name: Biblioteca Nacional de España
+    country: ES
+    protocol: sru
+    format: marc21
+    url: https://catalogo.bne.es/view/sru/34BNE_INST
+    sru_version: "1.2"
+    record_schema: marcxml
+    indexes:
+      title: alma.title
+      author: alma.creator
+      isbn: alma.isbn
+      year: alma.main_pub_date
+      control_number: alma.mms_id
+    verified_on: 2026-11-21
+
+  - id: k10plus
+    name: K10plus — catálogo coletivo alemão (GBV/SWB)
+    country: DE
+    protocol: sru
+    format: marc21
+    url: https://sru.k10plus.de/opac-de-627
+    sru_version: "1.1"
+    record_schema: marcxml
+    indexes:
+      title: pica.tit
+      author: pica.per
+      isbn: pica.isb
+      year: pica.jhr
+      control_number: pica.ppn
+    verified_on: 2026-11-21
+    notes: Substitui a DNB enquanto esta bloquear o acesso.
+
+  - id: swisscovery
+    name: swisscovery — catálogo coletivo suíço (SLSP)
+    country: CH
+    protocol: sru
+    format: marc21
+    url: https://swisscovery.slsp.ch/view/sru/41SLSP_NETWORK
+    sru_version: "1.2"
+    record_schema: marcxml
+    indexes:
+      title: alma.title
+      author: alma.creator
+      isbn: alma.isbn
+      year: alma.main_pub_date
+      control_number: alma.mms_id
+    verified_on: 2026-11-21
+
+  - id: dnb
+    name: Deutsche Nationalbibliothek
+    country: DE
+    protocol: sru
+    format: marc21
+    url: https://services.dnb.de/sru/dnb
+    sru_version: "1.1"
+    record_schema: MARC21-xml
+    indexes:
+      title: tit
+      author: per
+      isbn: num
+      year: jhr
+    enabled: false
+    notes: Em 2026-11-21 respondia HTTP 403 a tudo (até ao explain) a partir da rede de desenvolvimento. Voltar a testar noutra rede.
+
+  # ── América do Norte ────────────────────────────────────────────────────
+  - id: loc
+    name: Library of Congress
+    country: US
+    protocol: sru
+    format: marc21
+    url: https://lx2.loc.gov/sru/LCDB
+    sru_version: "1.1"
+    record_schema: marcxml
+    indexes:
+      title: dc.title
+      author: dc.creator
+      isbn: bath.isbn
+      year: dc.date
+      control_number: rec.id
+    verified_on: 2026-11-21
+    notes: O antigo SRU em http://lx2.loc.gov:210 deixou de responder; Z39.50 em lx2.loc.gov:210/LCDB também funciona.
+
+digital_sources:
+  - id: bnd
+    name: Biblioteca Nacional Digital (BNP)
+    kind: bnd
+    url: https://bndigital.bnportugal.gov.pt
+    check_url: https://purl.pt/
+    catalogue_target: bnp
+    verified_on: 2026-11-21
+    notes: >-
+      Pesquisa em direto no catálogo da BNP (Z39.50) e mostra os registos com
+      856 $u para purl.pt. O OAI-PMH (set bndlivre) só serve recolha em lote,
+      não pesquisa, e o portal só devolve HTML.
+
+  - id: europeana
+    name: Europeana
+    kind: europeana
+    url: https://api.europeana.eu/record/v2/search.json
+    check_url: https://api.europeana.eu/record/v2/search.json?wskey=api2demo&query=test&rows=0
+    verified_on: 2026-11-21
+    notes: Precisa de EUROPEANA_API_KEY (gratuita em https://pro.europeana.eu/page/get-api).
+
+  - id: internet-archive
+    name: Internet Archive
+    kind: internet_archive
+    url: https://archive.org/advancedsearch.php
+    check_url: https://archive.org/advancedsearch.php?q=test&fl[]=identifier&rows=0&output=json
+    verified_on: 2026-11-21
+
+  - id: open-library
+    name: Open Library
+    kind: open_library
+    url: https://openlibrary.org/search.json
+    check_url: https://openlibrary.org/search.json?q=test&limit=0
+    verified_on: 2026-11-21
+
+  - id: google-books
+    name: Google Books
+    kind: google_books
+    url: https://www.googleapis.com/books/v1/volumes
+    check_url: https://www.googleapis.com/books/v1/volumes?q=test&maxResults=1
+    verified_on: 2026-11-21
+    notes: Sem GOOGLE_BOOKS_API_KEY a quota partilhada esgota-se (HTTP 429).
+
+  - id: hathitrust
+    name: HathiTrust
+    kind: hathitrust
+    url: https://catalog.hathitrust.org/api/volumes/brief
+    check_url: https://catalog.hathitrust.org/api/volumes/brief/isbn/0198157827.json
+    verified_on: 2026-11-21
+    notes: Só pesquisa por ISBN (Bibliographic API); a pesquisa de texto está atrás de Cloudflare.
+
+  - id: gallica
+    name: Gallica (BnF)
+    kind: gallica
+    url: https://gallica.bnf.fr/SRU
+    check_url: https://gallica.bnf.fr/SRU?operation=explain&version=1.2
+    enabled: false
+    notes: Em 2026-11-21 o Cloudflare bloqueava a rede de desenvolvimento ("you have been blocked"). Voltar a testar noutra rede.

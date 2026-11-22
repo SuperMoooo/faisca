@@ -1,0 +1,1662 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Faisca",
+    "description": "Pesquisa de registos bibliográficos (UNIMARC) e de cópias digitais.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Check Liveness",
+        "description": "The process is up. Never touches the database, so a slow DB cannot restart the app.",
+        "operationId": "check_liveness_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Check Liveness Health Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Check Readiness",
+        "description": "The app can reach its database; a load balancer sends traffic only when this is 200.",
+        "operationId": "check_readiness_health_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "type": "object",
+                  "title": "Response Check Readiness Health Ready Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/catalogues/search": {
+      "get": {
+        "tags": [
+          "Catalogues"
+        ],
+        "summary": "Search Catalogues",
+        "description": "Searches every enabled catalogue (or `targets`) at once; partial results if some fail.",
+        "operationId": "search_catalogues_api_v1_catalogues_search_get",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Title"
+            }
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Author"
+            }
+          },
+          {
+            "name": "isbn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Isbn"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^\\d{4}$"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Year"
+            }
+          },
+          {
+            "name": "targets",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Target ids to search; all enabled targets when omitted.",
+              "title": "Targets"
+            },
+            "description": "Target ids to search; all enabled targets when omitted."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogueSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/records/{record_id}": {
+      "get": {
+        "tags": [
+          "Catalogues"
+        ],
+        "summary": "Get Record",
+        "description": "One record from a search, in UNIMARC, with the MARC21 original when converted.",
+        "operationId": "get_record_api_v1_records__record_id__get",
+        "parameters": [
+          {
+            "name": "record_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Record Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/records/{record_id}/iso2709": {
+      "get": {
+        "tags": [
+          "Catalogues"
+        ],
+        "summary": "Download Record",
+        "description": "One record as an ISO 2709 file: UNIMARC (default) or the original as received.",
+        "operationId": "download_record_api_v1_records__record_id__iso2709_get",
+        "parameters": [
+          {
+            "name": "record_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Record Id"
+            }
+          },
+          {
+            "name": "variant",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/RecordVariant",
+              "default": "unimarc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An ISO 2709 file, UTF-8.",
+            "content": {
+              "application/marc": {}
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/digital/search": {
+      "get": {
+        "tags": [
+          "Digital copies"
+        ],
+        "summary": "Search Digital Copies",
+        "description": "Searches BND, Europeana, Internet Archive, Open Library, Google Books… at once.",
+        "operationId": "search_digital_copies_api_v1_digital_search_get",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 300
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Title"
+            }
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 200
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Author"
+            }
+          },
+          {
+            "name": "isbn",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "maxLength": 40
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Isbn"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^\\d{4}$"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Year"
+            }
+          },
+          {
+            "name": "targets",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Target ids to search; all enabled targets when omitted.",
+              "title": "Targets"
+            },
+            "description": "Target ids to search; all enabled targets when omitted."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DigitalSearchResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/basket": {
+      "get": {
+        "tags": [
+          "Basket"
+        ],
+        "summary": "Get Basket",
+        "description": "Every record in the basket, oldest first.",
+        "operationId": "get_basket_api_v1_basket_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BasketRead"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Basket"
+        ],
+        "summary": "Add To Basket",
+        "description": "Adds a record from a search; 201 if new, 200 if it was already there.",
+        "operationId": "add_to_basket_api_v1_basket_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BasketItemCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BasketItemRead"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "The record was already in the basket."
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Basket"
+        ],
+        "summary": "Clear Basket",
+        "description": "Empties the basket.",
+        "operationId": "clear_basket_api_v1_basket_delete",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        }
+      }
+    },
+    "/api/v1/basket/{item_id}": {
+      "delete": {
+        "tags": [
+          "Basket"
+        ],
+        "summary": "Remove From Basket",
+        "description": "Takes one record out of the basket.",
+        "operationId": "remove_from_basket_api_v1_basket__item_id__delete",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Item Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/basket/export": {
+      "get": {
+        "tags": [
+          "Basket"
+        ],
+        "summary": "Export Basket",
+        "description": "Every record in the basket as one UNIMARC ISO 2709 file (UTF-8), for BIBLIO.NET.",
+        "operationId": "export_basket_api_v1_basket_export_get",
+        "responses": {
+          "200": {
+            "description": "One ISO 2709 file, UNIMARC, UTF-8.",
+            "content": {
+              "application/marc": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/targets": {
+      "get": {
+        "tags": [
+          "Targets"
+        ],
+        "summary": "List Targets",
+        "description": "Every catalogue and digital-copy source in config/targets.yaml.",
+        "operationId": "list_targets_api_v1_targets_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TargetList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/targets/status": {
+      "get": {
+        "tags": [
+          "Targets"
+        ],
+        "summary": "Check Targets",
+        "description": "Contacts every enabled target now and reports which answer (takes up to ~8 s).",
+        "operationId": "check_targets_api_v1_targets_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TargetStatusList"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessType": {
+        "type": "string",
+        "enum": [
+          "free",
+          "restricted",
+          "unknown"
+        ],
+        "title": "AccessType",
+        "description": "Whether anyone can read the copy online."
+      },
+      "BasketItemCreate": {
+        "properties": {
+          "record_id": {
+            "type": "string",
+            "maxLength": 300,
+            "minLength": 3,
+            "title": "Record Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "record_id"
+        ],
+        "title": "BasketItemCreate",
+        "description": "The body of `POST /basket`: a record id from a catalogue search."
+      },
+      "BasketItemRead": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "record_id": {
+            "type": "string",
+            "title": "Record Id"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "authors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Authors"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          },
+          "target_name": {
+            "type": "string",
+            "title": "Target Name"
+          },
+          "source_format": {
+            "$ref": "#/components/schemas/MarcFormat"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "record_id",
+          "title",
+          "authors",
+          "year",
+          "target_name",
+          "source_format",
+          "created_at"
+        ],
+        "title": "BasketItemRead",
+        "description": "One record in the basket."
+      },
+      "BasketRead": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/BasketItemRead"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "count"
+        ],
+        "title": "BasketRead",
+        "description": "The whole basket, oldest first (the order of the exported file)."
+      },
+      "BibliographicDescription": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "other_title_information": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Other Title Information"
+          },
+          "responsibility": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Responsibility"
+          },
+          "authors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Authors",
+            "default": []
+          },
+          "edition": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Edition"
+          },
+          "place_of_publication": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Of Publication"
+          },
+          "publisher": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Publisher"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year",
+            "description": "Four digits when known."
+          },
+          "physical_description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Physical Description"
+          },
+          "series": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Series"
+          },
+          "isbns": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Isbns",
+            "description": "Normalised to ISBN-13.",
+            "default": []
+          },
+          "languages": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Languages",
+            "default": []
+          },
+          "subjects": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Subjects",
+            "default": []
+          },
+          "notes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Notes",
+            "default": []
+          },
+          "digital_links": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Digital Links",
+            "description": "URLs from 856 $u.",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "title"
+        ],
+        "title": "BibliographicDescription",
+        "description": "What the results table and compare view show, read from the UNIMARC record."
+      },
+      "CatalogueSearchResponse": {
+        "properties": {
+          "query": {
+            "$ref": "#/components/schemas/SearchQuery"
+          },
+          "groups": {
+            "items": {
+              "$ref": "#/components/schemas/RecordGroup"
+            },
+            "type": "array",
+            "title": "Groups"
+          },
+          "record_count": {
+            "type": "integer",
+            "title": "Record Count"
+          },
+          "targets": {
+            "items": {
+              "$ref": "#/components/schemas/TargetOutcome"
+            },
+            "type": "array",
+            "title": "Targets"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "groups",
+          "record_count",
+          "targets"
+        ],
+        "title": "CatalogueSearchResponse",
+        "description": "The merged, deduplicated results, and how each target did."
+      },
+      "DigitalCopy": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "source_name": {
+            "type": "string",
+            "title": "Source Name"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "authors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Authors",
+            "default": []
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          },
+          "access": {
+            "$ref": "#/components/schemas/AccessType"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url",
+            "description": "Opens the copy, or its page at the source."
+          },
+          "thumbnail_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thumbnail Url"
+          },
+          "provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Provider",
+            "description": "The institution that holds it (Europeana)."
+          },
+          "catalogue_record_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Catalogue Record Id",
+            "description": "A catalogue record id (BND copies come from the BNP catalogue)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_id",
+          "source_name",
+          "title",
+          "access",
+          "url"
+        ],
+        "title": "DigitalCopy",
+        "description": "One digitised book found in one source."
+      },
+      "DigitalSearchResponse": {
+        "properties": {
+          "query": {
+            "$ref": "#/components/schemas/SearchQuery"
+          },
+          "copies": {
+            "items": {
+              "$ref": "#/components/schemas/DigitalCopy"
+            },
+            "type": "array",
+            "title": "Copies"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/SourceOutcome"
+            },
+            "type": "array",
+            "title": "Sources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "copies",
+          "sources"
+        ],
+        "title": "DigitalSearchResponse",
+        "description": "Every copy found, in targets.yaml source order, and how each source did."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "MarcFieldView": {
+        "properties": {
+          "tag": {
+            "type": "string",
+            "title": "Tag"
+          },
+          "indicator1": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Indicator1",
+            "description": "Null for control fields."
+          },
+          "indicator2": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Indicator2",
+            "description": "Null for control fields."
+          },
+          "data": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data",
+            "description": "Control fields (001-009) only."
+          },
+          "subfields": {
+            "items": {
+              "$ref": "#/components/schemas/MarcSubfieldView"
+            },
+            "type": "array",
+            "title": "Subfields",
+            "default": []
+          }
+        },
+        "type": "object",
+        "required": [
+          "tag"
+        ],
+        "title": "MarcFieldView",
+        "description": "One field as a cataloguer reads it: tag, indicators, subfields (or data for 00X)."
+      },
+      "MarcFormat": {
+        "type": "string",
+        "enum": [
+          "unimarc",
+          "marc21"
+        ],
+        "title": "MarcFormat",
+        "description": "The MARC format a record is encoded in."
+      },
+      "MarcRecordView": {
+        "properties": {
+          "format": {
+            "$ref": "#/components/schemas/MarcFormat"
+          },
+          "leader": {
+            "type": "string",
+            "title": "Leader"
+          },
+          "fields": {
+            "items": {
+              "$ref": "#/components/schemas/MarcFieldView"
+            },
+            "type": "array",
+            "title": "Fields"
+          }
+        },
+        "type": "object",
+        "required": [
+          "format",
+          "leader",
+          "fields"
+        ],
+        "title": "MarcRecordView",
+        "description": "A whole record as tag / indicators / subfields, in the format named by `format`."
+      },
+      "MarcSubfieldView": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "value": {
+            "type": "string",
+            "title": "Value"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "value"
+        ],
+        "title": "MarcSubfieldView",
+        "description": "One subfield: its code and value (`$a Os Lusíadas`)."
+      },
+      "Reachability": {
+        "type": "string",
+        "enum": [
+          "reachable",
+          "blocked",
+          "unreachable",
+          "disabled"
+        ],
+        "title": "Reachability",
+        "description": "What a live check of one target found."
+      },
+      "RecordDetail": {
+        "properties": {
+          "summary": {
+            "$ref": "#/components/schemas/RecordSummary"
+          },
+          "unimarc": {
+            "$ref": "#/components/schemas/MarcRecordView"
+          },
+          "original": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MarcRecordView"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The MARC21 record as received; null for native UNIMARC."
+          }
+        },
+        "type": "object",
+        "required": [
+          "summary",
+          "unimarc"
+        ],
+        "title": "RecordDetail",
+        "description": "One record in UNIMARC, with the MARC21 original when it was converted."
+      },
+      "RecordGroup": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/RecordSummary"
+            },
+            "type": "array",
+            "title": "Records"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "records"
+        ],
+        "title": "RecordGroup",
+        "description": "Records of the same book from several targets, best source first."
+      },
+      "RecordSummary": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "Stable for the cache's lifetime; use it to open or export."
+          },
+          "target_id": {
+            "type": "string",
+            "title": "Target Id"
+          },
+          "target_name": {
+            "type": "string",
+            "title": "Target Name"
+          },
+          "country": {
+            "type": "string",
+            "title": "Country"
+          },
+          "source_format": {
+            "$ref": "#/components/schemas/MarcFormat"
+          },
+          "description": {
+            "$ref": "#/components/schemas/BibliographicDescription"
+          },
+          "has_digital_copy": {
+            "type": "boolean",
+            "title": "Has Digital Copy",
+            "description": "The record links to an online copy (856 $u)."
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "target_id",
+          "target_name",
+          "country",
+          "source_format",
+          "description",
+          "has_digital_copy"
+        ],
+        "title": "RecordSummary",
+        "description": "One record in the results: where it came from and its description."
+      },
+      "RecordVariant": {
+        "type": "string",
+        "enum": [
+          "unimarc",
+          "original"
+        ],
+        "title": "RecordVariant",
+        "description": "Which form of a record to download."
+      },
+      "SearchQuery": {
+        "properties": {
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 300
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          },
+          "author": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Author"
+          },
+          "isbn": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Isbn"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          },
+          "targets": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Targets",
+            "description": "Target ids to search; all enabled targets when omitted."
+          }
+        },
+        "type": "object",
+        "title": "SearchQuery",
+        "description": "A search by title, author, ISBN and/or year; at least one of the first three."
+      },
+      "SourceOutcome": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "source_name": {
+            "type": "string",
+            "title": "Source Name"
+          },
+          "status": {
+            "$ref": "#/components/schemas/SourceSearchStatus"
+          },
+          "found_count": {
+            "type": "integer",
+            "title": "Found Count",
+            "default": 0
+          },
+          "elapsed_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elapsed Ms"
+          },
+          "from_cache": {
+            "type": "boolean",
+            "title": "From Cache",
+            "default": false
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          }
+        },
+        "type": "object",
+        "required": [
+          "source_id",
+          "source_name",
+          "status"
+        ],
+        "title": "SourceOutcome",
+        "description": "One source's part of a search."
+      },
+      "SourceSearchStatus": {
+        "type": "string",
+        "enum": [
+          "ok",
+          "failed",
+          "timed_out",
+          "skipped"
+        ],
+        "title": "SourceSearchStatus",
+        "description": "How the search went on one source."
+      },
+      "TargetKind": {
+        "type": "string",
+        "enum": [
+          "catalogue",
+          "digital"
+        ],
+        "title": "TargetKind",
+        "description": "Whether a target is a library catalogue or a source of digital copies."
+      },
+      "TargetList": {
+        "properties": {
+          "catalogues": {
+            "items": {
+              "$ref": "#/components/schemas/TargetRead"
+            },
+            "type": "array",
+            "title": "Catalogues"
+          },
+          "digital_sources": {
+            "items": {
+              "$ref": "#/components/schemas/TargetRead"
+            },
+            "type": "array",
+            "title": "Digital Sources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "catalogues",
+          "digital_sources"
+        ],
+        "title": "TargetList",
+        "description": "Every configured target, catalogues first."
+      },
+      "TargetOutcome": {
+        "properties": {
+          "target_id": {
+            "type": "string",
+            "title": "Target Id"
+          },
+          "target_name": {
+            "type": "string",
+            "title": "Target Name"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TargetSearchStatus"
+          },
+          "hit_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hit Count",
+            "description": "Matches on the target."
+          },
+          "returned_count": {
+            "type": "integer",
+            "title": "Returned Count",
+            "description": "Records fetched and shown.",
+            "default": 0
+          },
+          "elapsed_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elapsed Ms"
+          },
+          "from_cache": {
+            "type": "boolean",
+            "title": "From Cache",
+            "default": false
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          }
+        },
+        "type": "object",
+        "required": [
+          "target_id",
+          "target_name",
+          "status"
+        ],
+        "title": "TargetOutcome",
+        "description": "One target's part of a search: so the UI can show partial results and what failed."
+      },
+      "TargetRead": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/TargetKind"
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Country"
+          },
+          "protocol": {
+            "type": "string",
+            "title": "Protocol",
+            "description": "z3950, sru, or the web API's name."
+          },
+          "format": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MarcFormat"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "endpoint": {
+            "type": "string",
+            "title": "Endpoint"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "verified_on": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Verified On"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "country",
+          "protocol",
+          "format",
+          "endpoint",
+          "enabled",
+          "verified_on",
+          "notes"
+        ],
+        "title": "TargetRead",
+        "description": "One target as the API lists it; never its password."
+      },
+      "TargetSearchStatus": {
+        "type": "string",
+        "enum": [
+          "ok",
+          "failed",
+          "timed_out",
+          "unavailable"
+        ],
+        "title": "TargetSearchStatus",
+        "description": "How the search went on one target."
+      },
+      "TargetStatus": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "reachability": {
+            "$ref": "#/components/schemas/Reachability"
+          },
+          "latency_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency Ms"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "reachability"
+        ],
+        "title": "TargetStatus",
+        "description": "The result of checking one target live."
+      },
+      "TargetStatusList": {
+        "properties": {
+          "statuses": {
+            "items": {
+              "$ref": "#/components/schemas/TargetStatus"
+            },
+            "type": "array",
+            "title": "Statuses"
+          }
+        },
+        "type": "object",
+        "required": [
+          "statuses"
+        ],
+        "title": "TargetStatusList",
+        "description": "The live check of every target, in the order of `TargetList`."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

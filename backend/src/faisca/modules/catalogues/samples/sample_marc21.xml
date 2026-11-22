@@ -1,0 +1,12 @@
+<record xmlns="http://www.loc.gov/MARC21/slim">
+<leader>01242cam a2200337 a 4500</leader>
+<controlfield tag="001">2315102</controlfield>
+<controlfield tag="008">810911s2001    po            000 1 por  </controlfield>
+<datafield tag="020" ind1=" " ind2=" "><subfield code="a">9789720049657 (pbk.)</subfield></datafield>
+<datafield tag="040" ind1=" " ind2=" "><subfield code="a">DLC</subfield><subfield code="c">DLC</subfield></datafield>
+<datafield tag="100" ind1="1" ind2=" "><subfield code="a">Camões, Luís de,</subfield><subfield code="d">1524?-1580.</subfield></datafield>
+<datafield tag="245" ind1="1" ind2="3"><subfield code="a">Os Lusíadas /</subfield><subfield code="c">Luís de Camões.</subfield></datafield>
+<datafield tag="260" ind1=" " ind2=" "><subfield code="a">Porto :</subfield><subfield code="b">Porto Editora,</subfield><subfield code="c">2001.</subfield></datafield>
+<datafield tag="300" ind1=" " ind2=" "><subfield code="a">547 p. ;</subfield><subfield code="c">21 cm.</subfield></datafield>
+<datafield tag="650" ind1=" " ind2="0"><subfield code="a">Epic poetry, Portuguese.</subfield></datafield>
+</record>

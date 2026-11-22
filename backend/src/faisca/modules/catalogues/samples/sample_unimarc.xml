@@ -1,0 +1,15 @@
+<record xmlns="http://www.loc.gov/MARC21/slim">
+<leader>00000nam  2200000   450 </leader>
+<controlfield tag="001">1234567</controlfield>
+<datafield tag="010" ind1=" " ind2=" "><subfield code="a">978-972-0-04965-7</subfield></datafield>
+<datafield tag="100" ind1=" " ind2=" "><subfield code="a">20010101d2001    m  y0porb50      ba</subfield></datafield>
+<datafield tag="101" ind1="0" ind2=" "><subfield code="a">por</subfield></datafield>
+<datafield tag="200" ind1="1" ind2=" "><subfield code="a">Os Lusíadas</subfield><subfield code="f">Luís de Camões</subfield><subfield code="g">ed. Emanuel Paulo Ramos</subfield></datafield>
+<datafield tag="205" ind1=" " ind2=" "><subfield code="a">3ª ed.</subfield></datafield>
+<datafield tag="210" ind1=" " ind2=" "><subfield code="a">Porto</subfield><subfield code="c">Porto Editora</subfield><subfield code="d">2001</subfield></datafield>
+<datafield tag="215" ind1=" " ind2=" "><subfield code="a">547 p.</subfield><subfield code="d">21 cm</subfield></datafield>
+<datafield tag="225" ind1="2" ind2=" "><subfield code="a">Clássicos da literatura portuguesa</subfield></datafield>
+<datafield tag="606" ind1=" " ind2=" "><subfield code="a">Poesia épica portuguesa</subfield></datafield>
+<datafield tag="675" ind1=" " ind2=" "><subfield code="a">821.134.3-13"15"</subfield></datafield>
+<datafield tag="700" ind1=" " ind2="1"><subfield code="a">Camões</subfield><subfield code="b">Luís de</subfield><subfield code="f">1524?-1580</subfield><subfield code="4">070</subfield></datafield>
+</record>

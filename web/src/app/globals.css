@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/*
+ * Faísca's tokens. Azulejo cobalt on cool white paper; amber is the spark,
+ * kept for the logo, keyboard focus and open-access copies only.
+ */
+:root {
+  --paper: #f1f4f9;
+  --surface: #ffffff;
+  --ink: #172036;
+  --muted: #5a6478;
+  --rule: #d3dae6;
+  --cobalt: #2341a8;
+  --cobalt-soft: #e7ecf8;
+  --spark: #f5b000;
+  --spark-soft: #fff4d6;
+  --ok: #1e7a4c;
+  --failed: #b42318;
+  --slow: #9a6700;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0f1626;
+    --surface: #172036;
+    --ink: #e8ecf5;
+    --muted: #9aa4b8;
+    --rule: #2c3852;
+    --cobalt: #8fa6f2;
+    --cobalt-soft: #212d4d;
+    --spark: #ffc53d;
+    --spark-soft: #3a2f12;
+    --ok: #5cc994;
+    --failed: #ff8a7a;
+    --slow: #e3b341;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-cobalt: var(--cobalt);
+  --color-cobalt-soft: var(--cobalt-soft);
+  --color-spark: var(--spark);
+  --color-spark-soft: var(--spark-soft);
+  --color-ok: var(--ok);
+  --color-failed: var(--failed);
+  --color-slow: var(--slow);
+  --font-sans: var(--font-atkinson), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  /* A 1.25 (major third) scale from a 16px body. */
+  --text-small: 0.8125rem;
+  --text-body: 1rem;
+  --text-lead: 1.25rem;
+  --text-heading: 1.5625rem;
+  --text-title: 1.953rem;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+/* Keyboard focus is always visible, in the spark colour. */
+:focus-visible {
+  outline: 3px solid var(--spark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── The record, typeset like a catalogue card ─────────────────────────── */
+
+.marc-record {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.marc-field {
+  display: grid;
+  grid-template-columns: 3.25ch 4ch 1fr;
+  column-gap: 0.75rem;
+  padding: 0.125rem 0;
+}
+
+.marc-tag {
+  color: var(--cobalt);
+  font-weight: 600;
+}
+
+.marc-indicators {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.marc-indicator {
+  display: inline-block;
+  width: 1.5ch;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* UNIMARC documentation writes a blank indicator as "#". */
+.marc-indicator[data-blank="true"] {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+.marc-subfield-code {
+  color: var(--cobalt);
+  font-weight: 700;
+  margin-right: 0.25ch;
+}
+
+.marc-value + .marc-subfield-code {
+  margin-left: 0.75ch;
+}
+
+/* The part of a title ignored when sorting ("Os " in "Os Lusíadas"). */
+.marc-non-sort {
+  text-decoration: underline dotted var(--muted);
+  text-underline-offset: 3px;
+}
+
+.marc-field-changed {
+  background: var(--spark-soft);
+  box-shadow: inset 3px 0 0 var(--spark);
+}
+
+@media (max-width: 40rem) {
+  .marc-record {
+    font-size: 0.8125rem;
+  }
+
+  .marc-field {
+    grid-template-columns: 3.25ch 4ch 1fr;
+    column-gap: 0.5rem;
+  }
+}

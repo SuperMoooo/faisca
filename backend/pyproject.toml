@@ -1,0 +1,65 @@
+[project]
+name = "faisca"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "aiosqlite>=0.22.1",
+    "alembic>=1.20.1",
+    "fastapi[standard]>=0.165.0",
+    "httpx>=0.28.1",
+    "lxml>=6.1.3",
+    "pydantic-settings>=2.16.3",
+    "pymarc>=5.4.1",
+    "pyyaml>=6.0.4",
+    "sqlalchemy[asyncio]>=2.1.9",
+    "structlog>=26.1.0",
+    "truststore>=0.10.5",
+]
+description = "Faisca: a FastAPI service."
+readme = "README.md"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "N", "ASYNC", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "--import-mode=importlib"
+# The backend root, so tests import their shared helpers as `tests.helpers`.
+pythonpath = ["."]
+
+[tool.importlinter]
+root_packages = ["faisca"]
+
+[[tool.importlinter.contracts]]
+name = "Modules talk to each other only through public.py"
+type = "independence"
+modules = ["faisca.modules.*"]
+ignore_imports = ["faisca.modules.** -> faisca.modules.*.public"]
+unmatched_ignore_imports_alerting = "none"
+[dependency-groups]
+dev = [
+    "import-linter>=2.17",
+    "lxml-stubs>=0.5.1",
+    "mypy>=2.4.1",
+    "pre-commit>=4.7.0",
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.5.0",
+    "respx>=0.23.1",
+    "ruff>=0.17.6",
+    "types-pyyaml>=6.0.12.20261113",
+]

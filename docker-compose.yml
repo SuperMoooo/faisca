@@ -1,0 +1,22 @@
+# Local stack: `docker compose up --build`, then http://localhost:8000
+#
+# One service: FastAPI serving the API (/api/v1) and the web app (/).
+# Faísca has no login, so it listens on this computer only (127.0.0.1).
+# On a server, put it behind an HTTPS reverse proxy with access control
+# (see the README) instead of opening the port.
+services:
+  faisca:
+    build: .
+    image: faisca:latest
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    volumes:
+      # SQLite (24 h response cache + export basket) survives `docker compose down`.
+      - faisca-data:/data
+    restart: unless-stopped
+
+volumes:
+  faisca-data:

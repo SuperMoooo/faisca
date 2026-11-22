@@ -1,0 +1,107 @@
+# Written by moarch-py — https://pypi.org/project/moarch-py/
+# Lets `moarch-py update` tell untouched generated files from edited ones.
+# Do not edit by hand.
+version: 0.2.1
+generated_with: 0.2.1
+generated_at: '2026-11-21T23:01:15+00:00'
+package: faisca
+database: sqlite
+stack:
+- migrations
+- docker
+- ci
+- pre_commit
+- ai
+modules:
+- users
+- basket_items
+- cached_responses
+files:
+  .agents/skills/moarch-add-module/SKILL.md: 31df09fbaa1793f7
+  .agents/skills/moarch-explain/SKILL.md: da1795278e5e1f7a
+  .agents/skills/moarch-fix-bug/SKILL.md: 408bf093c389cbb4
+  .agents/skills/moarch-make-readable/SKILL.md: f1bb9cad0b0e3eb5
+  .agents/skills/moarch-review/SKILL.md: 141bbf3b7661f252
+  .agents/skills/moarch-write-tests/SKILL.md: f539f0248840e021
+  .claude/settings.json: c5ab7b2e44ffb2bd
+  .claude/skills/moarch-add-module/SKILL.md: 6ecb7c2dfdd482a7
+  .claude/skills/moarch-explain/SKILL.md: 1db0a4840be24e22
+  .claude/skills/moarch-fix-bug/SKILL.md: 9eb596ed2bc71990
+  .claude/skills/moarch-make-readable/SKILL.md: de999a4318151634
+  .claude/skills/moarch-review/SKILL.md: 84c4e8ea7e3d2a69
+  .claude/skills/moarch-write-tests/SKILL.md: 8270ea1407a4d9d9
+  .dockerignore: b1cec0d7308e95f3
+  .env.example: ddb64cbe99289721
+  .github/workflows/ci.yml: 13d36c81256022a7
+  .gitignore: a2ca87e3f5513c9e
+  .pre-commit-config.yaml: d8d5f6a07873775a
+  .python-version: 7b55f8e67b5623c4
+  .vscode/extensions.json: 91b4b02dfe39fe3d
+  .vscode/settings.json: 8cf8135e66413fe8
+  AGENTS.md: 27b7346d05fd048a
+  CLAUDE.md: 737c3a16ca673225
+  Dockerfile: 2234aab49fd50e1e
+  README.md: b8a4b1c502b1888f
+  alembic.ini: 6532694ad6ce2853
+  docker-compose.yml: ab70057fb0c72390
+  docs/ARCHITECTURE.md: 6b6bbd7a9adcecc2
+  migrations/env.py: fe38f8aa5a034c31
+  migrations/script.py.mako: a4b1487ef35e1493
+  migrations/versions/.gitkeep: e3b0c44298fc1c14
+  src/faisca/__init__.py: 4a3502e11c366ebe
+  src/faisca/api/__init__.py: e3b0c44298fc1c14
+  src/faisca/api/health.py: d68cae451228a26c
+  src/faisca/api/v1/__init__.py: e3b0c44298fc1c14
+  src/faisca/api/v1/router.py: 7a12531a24118c83
+  src/faisca/core/__init__.py: e3b0c44298fc1c14
+  src/faisca/core/config.py: 1e32b4b7cf5d8930
+  src/faisca/core/errors.py: c10758eba103195c
+  src/faisca/core/logging.py: 0ca2810599c7c2d1
+  src/faisca/db/__init__.py: e3b0c44298fc1c14
+  src/faisca/db/base.py: f0ab734f52b0626a
+  src/faisca/db/models.py: af325912355eae62
+  src/faisca/db/repository.py: aa586056c53218ad
+  src/faisca/db/session.py: 4bdc3813e053077a
+  src/faisca/main.py: 81dd1ba190aba8c4
+  src/faisca/modules/__init__.py: b3434efb3ef6e155
+  src/faisca/modules/basket_items/__init__.py: a6df8e9d4c76bbe8
+  src/faisca/modules/basket_items/dependencies.py: eef3ea917e22d4f0
+  src/faisca/modules/basket_items/mocks.py: 51040c4a309994fd
+  src/faisca/modules/basket_items/models.py: 7314ab3783424442
+  src/faisca/modules/basket_items/public.py: bfcfe1e50a9f4a4b
+  src/faisca/modules/basket_items/repository.py: f3074f4863fbb661
+  src/faisca/modules/basket_items/router.py: e4a1f51431ab9ebe
+  src/faisca/modules/basket_items/schemas.py: 8aebc54c95a0bf44
+  src/faisca/modules/basket_items/service.py: a70396c14be530f0
+  src/faisca/modules/cached_responses/__init__.py: 7ba59e0e7bfa9fb3
+  src/faisca/modules/cached_responses/dependencies.py: f9454de0c3844485
+  src/faisca/modules/cached_responses/mocks.py: 7f72b45976ff10a7
+  src/faisca/modules/cached_responses/models.py: 736eca6f4175aff7
+  src/faisca/modules/cached_responses/public.py: 069eb87125acd760
+  src/faisca/modules/cached_responses/repository.py: ec4f74d6d6b7bbb3
+  src/faisca/modules/cached_responses/router.py: b94588bd800ede71
+  src/faisca/modules/cached_responses/schemas.py: 56b14367322d51e7
+  src/faisca/modules/cached_responses/service.py: 6f99707b87fad3fa
+  src/faisca/modules/users/__init__.py: d9c98f0723ff8d1b
+  src/faisca/modules/users/dependencies.py: 22fc4ef1c4b74b08
+  src/faisca/modules/users/mocks.py: da409f81b160b451
+  src/faisca/modules/users/models.py: f550402ba1a5690a
+  src/faisca/modules/users/public.py: a09cae835e892ae6
+  src/faisca/modules/users/repository.py: 8ea46340cf0a8548
+  src/faisca/modules/users/router.py: 5a7a48ae1d24f357
+  src/faisca/modules/users/schemas.py: 5ca37a86ae57c8ba
+  src/faisca/modules/users/service.py: a1a6aac317326bc8
+  src/faisca/py.typed: e3b0c44298fc1c14
+  tests/conftest.py: b49f9a5eefde4193
+  tests/modules/basket_items/test_basket_items_api.py: 4424de912ebcdf40
+  tests/modules/basket_items/test_basket_items_mocks.py: 9db7ffd532b82cd6
+  tests/modules/basket_items/test_basket_items_public.py: dda7234b7d42be2b
+  tests/modules/cached_responses/test_cached_responses_api.py: 51b3504f3d6625e3
+  tests/modules/cached_responses/test_cached_responses_mocks.py: 83de7dd50863ac04
+  tests/modules/cached_responses/test_cached_responses_public.py: 039411e877e7cafc
+  tests/modules/users/test_api_tokens_repository.py: 09014cc2af46b16a
+  tests/modules/users/test_users_api.py: d19f7f6ba4475411
+  tests/modules/users/test_users_mocks.py: ff60e04935e15f4d
+  tests/modules/users/test_users_public.py: 7571a7cada6d23af
+  tests/test_health.py: 5e0667dd7269fd1b
+  tests/test_settings.py: 76ac683badf027a1

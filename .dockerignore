@@ -1,0 +1,50 @@
+# Kept out of the Docker build context. The Dockerfile copies backend/, web/
+# and config/ explicitly; this file makes sure nothing else is even sent:
+# the future Flutter app, git history, secrets, tests, caches, dev tooling.
+
+# The Flutter app consumes the API; it is never part of the server image.
+mobile/
+
+# Version control and editor/agent tooling
+.git/
+.github/
+.vscode/
+.idea/
+**/.claude/
+**/.agents/
+**/AGENTS.md
+**/CLAUDE.md
+
+# Secrets and local data
+.env
+.env.*
+!.env.example
+**/*.db
+**/*.sqlite3
+**/*.pem
+
+# Tests and test data
+backend/tests/
+backend/scripts/
+**/.pytest_cache/
+**/.coverage
+**/htmlcov/
+
+# Python caches and environments
+**/.venv/
+**/__pycache__/
+**/*.py[cod]
+**/.mypy_cache/
+**/.ruff_cache/
+
+# Node and Next.js build output (the image builds its own)
+**/node_modules/
+web/.next/
+web/out/
+**/*.tsbuildinfo
+
+# Documentation and contracts are not needed to run the app
+docs/
+backend/docs/
+contracts/
+README.md

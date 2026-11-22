@@ -1,0 +1,125 @@
+<collection><record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>00825cam a2200253  04500</leader>
+  <controlfield tag="001">38814</controlfield>
+  <controlfield tag="003">http://id.bnportugal.gov.pt/bib/porbase/38814</controlfield>
+  <controlfield tag="005">19981113111600.0</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(bn)38814</subfield>
+  </datafield>
+  <datafield tag="095" ind1=" " ind2=" ">
+    <subfield code="a">PTBN00039851</subfield>
+  </datafield>
+  <datafield tag="100" ind1=" " ind2=" ">
+    <subfield code="a">19840601d1984    km y0pora0103    ba</subfield>
+  </datafield>
+  <datafield tag="101" ind1="0" ind2=" ">
+    <subfield code="a">por</subfield>
+  </datafield>
+  <datafield tag="102" ind1=" " ind2=" ">
+    <subfield code="a">PT</subfield>
+  </datafield>
+  <datafield tag="200" ind1="1" ind2=" ">
+    <subfield code="a">André Baião, tradutor latino de &quot;Os Lusíadas&quot;</subfield>
+    <subfield code="e">da diáfrase à hipocléptica semântica</subfield>
+    <subfield code="f">Amadeu Rodrigues Torres</subfield>
+  </datafield>
+  <datafield tag="210" ind1=" " ind2=" ">
+    <subfield code="a">Ponta Delgada</subfield>
+    <subfield code="c">Univ. Açores,</subfield>
+    <subfield code="d">1984</subfield>
+  </datafield>
+  <datafield tag="215" ind1=" " ind2=" ">
+    <subfield code="a">p. 659-705</subfield>
+    <subfield code="d">25 cm</subfield>
+  </datafield>
+  <datafield tag="305" ind1=" " ind2=" ">
+    <subfield code="a">Sep. Actas - IV Reuniäo Intern. de Camonistas</subfield>
+  </datafield>
+  <datafield tag="801" ind1=" " ind2="0">
+    <subfield code="a">PT</subfield>
+    <subfield code="b">BN</subfield>
+    <subfield code="g">RPC</subfield>
+  </datafield>
+  <datafield tag="966" ind1=" " ind2=" ">
+    <subfield code="l">BN</subfield>
+    <subfield code="m">RESIMP</subfield>
+    <subfield code="s">CAM. 1541 V.</subfield>
+  </datafield>
+  <datafield tag="997" ind1=" " ind2=" ">
+    <subfield code="a">BIBEOD</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="a">FSE76 - 00182</subfield>
+  </datafield>
+  <datafield tag="675" ind1=" " ind2=" ">
+    <subfield code="a">869.0-1 Camões, L. de.06</subfield>
+    <subfield code="v">med</subfield>
+    <subfield code="z">por</subfield>
+  </datafield>
+  <datafield tag="675" ind1=" " ind2=" ">
+    <subfield code="a">873.4-1 Baiäo, A..06</subfield>
+    <subfield code="v">med</subfield>
+    <subfield code="z">por</subfield>
+  </datafield>
+  <datafield tag="700" ind1=" " ind2="1">
+    <subfield code="a">Torres,</subfield>
+    <subfield code="b">Amadeu,</subfield>
+    <subfield code="f">1924-2012</subfield>
+  </datafield>
+</record>
+<record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>00739cam a22002171 04500</leader>
+  <controlfield tag="001">82196</controlfield>
+  <controlfield tag="003">http://id.bnportugal.gov.pt/bib/porbase/82196</controlfield>
+  <controlfield tag="005">19981118121300.0</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(bn)82196</subfield>
+  </datafield>
+  <datafield tag="095" ind1=" " ind2=" ">
+    <subfield code="a">PTBN00085381</subfield>
+  </datafield>
+  <datafield tag="100" ind1=" " ind2=" ">
+    <subfield code="a">19740301d1972    m  a0pora0103    ba</subfield>
+  </datafield>
+  <datafield tag="101" ind1="0" ind2=" ">
+    <subfield code="a">por</subfield>
+  </datafield>
+  <datafield tag="102" ind1=" " ind2=" ">
+    <subfield code="a">PT</subfield>
+  </datafield>
+  <datafield tag="200" ind1="1" ind2=" ">
+    <subfield code="a">A viagem de Vasco da Gama entre Moçambique e Melinde, segundo Os Lusíadas e segundo as Crónicas</subfield>
+    <subfield code="f">Luís Guilherme Mendonça de Albuquerque</subfield>
+  </datafield>
+  <datafield tag="210" ind1=" " ind2=" ">
+    <subfield code="a">Lisboa</subfield>
+    <subfield code="c">Junta de Investigações do Ultramar,</subfield>
+    <subfield code="d">1972</subfield>
+  </datafield>
+  <datafield tag="215" ind1=" " ind2=" ">
+    <subfield code="a">[4], 25 p.</subfield>
+    <subfield code="d">30 cm</subfield>
+  </datafield>
+  <datafield tag="305" ind1=" " ind2=" ">
+    <subfield code="a">Sep. Garcia de Orta, N&lt;U+00BA&gt; especial, 1972</subfield>
+  </datafield>
+  <datafield tag="801" ind1=" " ind2="0">
+    <subfield code="a">PT</subfield>
+    <subfield code="b">BN</subfield>
+    <subfield code="g">RPC</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="a">CR458 - 00105</subfield>
+  </datafield>
+  <datafield tag="700" ind1=" " ind2="1">
+    <subfield code="a">Albuquerque,</subfield>
+    <subfield code="b">Luís de,</subfield>
+    <subfield code="f">1917-1995</subfield>
+  </datafield>
+  <datafield tag="675" ind1=" " ind2=" ">
+    <subfield code="a">91</subfield>
+    <subfield code="v">med</subfield>
+    <subfield code="z">por</subfield>
+  </datafield>
+</record>
+</collection>

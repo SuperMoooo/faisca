@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+  <version>1.2</version>
+  <numberOfRecords>199</numberOfRecords>
+  <records>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <leader>01957nkm a2200385 c 4500</leader>
+          <controlfield tag="001">991047855629708606</controlfield>
+          <controlfield tag="003">SpMaBN</controlfield>
+          <controlfield tag="005">20260407191002.0</controlfield>
+          <controlfield tag="007">kh*bo</controlfield>
+          <controlfield tag="008">230331e19721121sp    *  ****  ***k spa^^</controlfield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(OCoLC)1374932815</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(SpMaBN)a7250309</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="040">
+            <subfield code="a">SpMaBN</subfield>
+            <subfield code="b">spa</subfield>
+            <subfield code="c">SpMaBN</subfield>
+            <subfield code="e">rdc</subfield>
+          </datafield>
+          <datafield ind1="2" ind2=" " tag="110">
+            <subfield code="a">Crismakolor (Estudio fotográfico)</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="0" tag="245">
+            <subfield code="a">[Concierto del grupo Segréis de Lisboa]</subfield>
+            <subfield code="c">Reportajes Crismakolor</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="260">
+            <subfield code="c">[21 de noviembre de 1972]</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="300">
+            <subfield code="a">12 fotografías</subfield>
+            <subfield code="b">papel gelatina</subfield>
+            <subfield code="c">18 x 24</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="336">
+            <subfield code="a">Imagen (fija; bidimensional; visual)</subfield>
+            <subfield code="2">isbdcontent</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="337">
+            <subfield code="a">sin mediación</subfield>
+            <subfield code="2">isbdmedia</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="490">
+            <subfield code="a">Archivo fotográfico de actos y espacios de la BNE</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Varios aspectos del concierto celebrado con motivo del IV Centenario de Os Lusíadas de Camôes por el grupo Segréis de Lisboa</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Al verso de todas las fotografías sello: “REPORTAJES / CRISMAKOLOR / FOTO / 21 Nov. 1972 / CINE / Teléf. 797 78 99 / MONCADA, 104-7º.B. MADRID -21"</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">La exposición IV Centenario de Os Lusíadas de Camôes, 1572-1972 se celebró en la Biblioteca Nacional entre el 21 de noviembre y el 10 de diciembre</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Título tomado del fichero del Archivo fotográfico de actos y espacios de la BNE</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Fecha tomada del sello al verso de todas las fotografías y del fichero del Archivo fotográfico de actos y espacios de la BNE</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Camões, Luís de</subfield>
+            <subfield code="d">1524?-1580</subfield>
+            <subfield code="t">Os Lusíadas</subfield>
+            <subfield code="v">Exposiciones</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="2" ind2="7" tag="610">
+            <subfield code="a">Biblioteca Nacional de España</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="7" tag="650">
+            <subfield code="a">Conciertos</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="7" tag="655">
+            <subfield code="a">Positivos papel gelatina</subfield>
+            <subfield code="z">España</subfield>
+            <subfield code="y">S.XX</subfield>
+            <subfield code="2">tgfbne</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="787">
+            <subfield code="t">IV Centenario de Os Lusíadas de Camôes, 1572-1972</subfield>
+            <subfield code="w">991057307349708606</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="935">
+            <subfield code="a">a7250309</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="956">
+            <subfield code="a">1</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="993">
+            <subfield code="a">7250309</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="994">
+            <subfield code="a">GRAFNOPRO</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="999">
+            <subfield code="a">17-BNE/344-17-BNE/355</subfield>
+            <subfield code="w">ALPHANUM</subfield>
+            <subfield code="c">1</subfield>
+            <subfield code="i">7250309-1001</subfield>
+            <subfield code="l">SALA_GOYA</subfield>
+            <subfield code="m">BNMADRID</subfield>
+            <subfield code="r">Y</subfield>
+            <subfield code="s">Y</subfield>
+            <subfield code="t">FONDO_RESE</subfield>
+            <subfield code="u">31/3/2023</subfield>
+            <subfield code="x">FOTOGRAFIA</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">991047855629708606</subfield>
+            <subfield code="8">221278434480008606</subfield>
+            <subfield code="a">34BNE_INST</subfield>
+            <subfield code="b">BNMADRID</subfield>
+            <subfield code="c">Sala Goya. Bellas Artes</subfield>
+            <subfield code="d">17-BNE/344-17-BNE/355</subfield>
+            <subfield code="e">available</subfield>
+            <subfield code="f">1</subfield>
+            <subfield code="g">0</subfield>
+            <subfield code="j">SALA_GOYA</subfield>
+            <subfield code="k">4</subfield>
+            <subfield code="p">1</subfield>
+            <subfield code="q">Sede Central (Paseo de Recoletos)</subfield>
+          </datafield>
+        </record>
+      </recordData>
+      <recordIdentifier>991047855629708606</recordIdentifier>
+      <recordPosition>1</recordPosition>
+    </record>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <leader>03466nkm a2200565 c 4500</leader>
+          <controlfield tag="001">991047852749708606</controlfield>
+          <controlfield tag="003">SpMaBN</controlfield>
+          <controlfield tag="005">20260407191004.0</controlfield>
+          <controlfield tag="007">kh*bo</controlfield>
+          <controlfield tag="008">230331e19721121sp    *  ****  ***k spa^^</controlfield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(OCoLC)1374937196</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(SpMaBN)a7250235</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="040">
+            <subfield code="a">SpMaBN</subfield>
+            <subfield code="b">spa</subfield>
+            <subfield code="c">SpMaBN</subfield>
+            <subfield code="e">rdc</subfield>
+          </datafield>
+          <datafield ind1="2" ind2=" " tag="110">
+            <subfield code="a">Europa Press</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="0" tag="245">
+            <subfield code="a">[Varios aspectos de la inauguración de la exposición IV Centenario de Os Lusíadas de Camôes, 1572-1972]</subfield>
+            <subfield code="c">Europa Press, Antonio Verdugo</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="260">
+            <subfield code="c">[21 de noviembre de 1972]</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="300">
+            <subfield code="a">32 fotografías</subfield>
+            <subfield code="b">papel gelatina</subfield>
+            <subfield code="c">18 x 24</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="336">
+            <subfield code="a">Imagen (fija; bidimensional; visual)</subfield>
+            <subfield code="2">isbdcontent</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="337">
+            <subfield code="a">sin mediación</subfield>
+            <subfield code="2">isbdmedia</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="490">
+            <subfield code="a">Archivo fotográfico de actos y espacios de la BNE</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Vistas del acto de la inauguracion de la exposición, del recibimiento y despedida de las autoridades al general Francisco Franco, de la entrada a las salas de exposiciones de la primera planta desde el vestíbulo principal, de las salas de exposiciones, de las diferentes vitrinas y paneles expositivos, de algunas de las obras expuestas</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Entre los asistentes al acto se encuentran José Veiga Simao, Alfredo Sánchez Bella, Luis Sánchez Belda, Gregorio López Bravo, Antonio Mª de Oriol y Urquijo, Manuel Lopes de Almeida, Carmen Polo, Fernando Fuertes de Villavicencio, Francisco Franco, el embajador de Portugal, Juan Castañón de Mena y José Luis Villar Palasí</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Las fotografías con signatura 17-BNE/313 a 17-BNE/323 tienen al verso el sello: "EUROPA PRESS /AVDA. DEL GENERALISIMO, 96 - MADRID / TELEFONO 457 76 00" y las fotografías con signatura 17-BNE/324 a 17-BNE/343 tienen al verso el sello: "ANTONIO VERDUGO / FOTOGRAFÍAS DE PRENSA / Lagasca, 32 / Teléfono 226 68 52 / Madrid - 1"</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">La exposición IV Centenario de Os Lusíadas de Camôes, 1572-1972 se celebró en la Biblioteca Nacional entre el 21 de noviembre y el 10 de diciembre</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Título basado en el fichero del Archivo fotográfico de actos y espacios de la BNE</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="500">
+            <subfield code="a">Fecha tomada del fichero del Archivo fotográfico de actos y espacios de la BNE</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Camões, Luís de</subfield>
+            <subfield code="d">1524?-1580</subfield>
+            <subfield code="t">Os Lusíadas</subfield>
+            <subfield code="v">Exposiciones</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Simao, José Veiga</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Sánchez Bella, Alfredo</subfield>
+            <subfield code="d">1916-1999</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Sánchez Belda, Luis</subfield>
+            <subfield code="d">1920-1984</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">López Bravo, Gregorio</subfield>
+            <subfield code="d">1923-1985</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Oriol y Urquijo, Antonio María de</subfield>
+            <subfield code="d">1913-1996</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Almeida, M. Lopes de</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Polo, Carmen</subfield>
+            <subfield code="d">1900-1988</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Fuertes de Villavicencio, Fernando</subfield>
+            <subfield code="d">1901-1996</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Franco Bahamonde, Francisco</subfield>
+            <subfield code="d">1892-1975</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Castañón de Mena, Juan</subfield>
+            <subfield code="d">1903-1982</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="7" tag="600">
+            <subfield code="a">Villar Palasí, José Luis</subfield>
+            <subfield code="d">1922-2012</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1="2" ind2="7" tag="610">
+            <subfield code="a">Biblioteca Nacional de España</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="7" tag="650">
+            <subfield code="a">Exposiciones</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="7" tag="650">
+            <subfield code="a">Salas de exposición</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="7" tag="650">
+            <subfield code="a">Libros</subfield>
+            <subfield code="x">Historia</subfield>
+            <subfield code="v">Exposiciones</subfield>
+            <subfield code="2">embne</subfield>
+          </datafield>
+          <datafield ind1=" " ind2="7" tag="655">
+            <subfield code="a">Positivos papel gelatina</subfield>
+            <subfield code="z">España</subfield>
+            <subfield code="y">S.XX</subfield>
+            <subfield code="2">tgfbne</subfield>
+          </datafield>
+          <datafield ind1="1" ind2=" " tag="700">
+            <subfield code="a">Verdugo, Antonio</subfield>
+            <subfield code="d">1908-1986</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="787">
+            <subfield code="t">IV Centenario de Os Lusíadas de Camôes, 1572-1972</subfield>
+            <subfield code="w">991057307349708606</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="935">
+            <subfield code="a">a7250235</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="956">
+            <subfield code="a">1</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="993">
+            <subfield code="a">7250235</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="994">
+            <subfield code="a">GRAFNOPRO</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="999">
+            <subfield code="a">17-BNE/313-17-BNE/343</subfield>
+            <subfield code="w">ALPHANUM</subfield>
+            <subfield code="c">1</subfield>
+            <subfield code="i">7250235-1001</subfield>
+            <subfield code="l">SALA_GOYA</subfield>
+            <subfield code="m">BNMADRID</subfield>
+            <subfield code="r">Y</subfield>
+            <subfield code="s">Y</subfield>
+            <subfield code="t">FONDO_RESE</subfield>
+            <subfield code="u">31/3/2023</subfield>
+            <subfield code="x">FOTOGRAFIA</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">991047852749708606</subfield>
+            <subfield code="8">221278444590008606</subfield>
+            <subfield code="a">34BNE_INST</subfield>
+            <subfield code="b">BNMADRID</subfield>
+            <subfield code="c">Sala Goya. Bellas Artes</subfield>
+            <subfield code="d">17-BNE/313-17-BNE/343</subfield>
+            <subfield code="e">available</subfield>
+            <subfield code="f">1</subfield>
+            <subfield code="g">0</subfield>
+            <subfield code="j">SALA_GOYA</subfield>
+            <subfield code="k">4</subfield>
+            <subfield code="p">1</subfield>
+            <subfield code="q">Sede Central (Paseo de Recoletos)</subfield>
+          </datafield>
+        </record>
+      </recordData>
+      <recordIdentifier>991047852749708606</recordIdentifier>
+      <recordPosition>2</recordPosition>
+    </record>
+  </records>
+  <nextRecordPosition>3</nextRecordPosition>
+  <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+    <xb:exact>true</xb:exact>
+    <xb:responseDate>2026-11-22T00:10:40+0100</xb:responseDate>
+  </extraResponseData>
+</searchRetrieveResponse>

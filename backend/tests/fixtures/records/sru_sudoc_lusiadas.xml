@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="https://www.sudoc.abes.fr/cbs/sru/DB=2.1/?xsl=searchRetrieveResponse" ?>
+<srw:searchRetrieveResponse xmlns:srw="http://www.loc.gov/zing/srw/"
+			    xmlns:dc="http://purl.org/dc/elements/1.1/"
+			    xmlns:diag="http://www.loc.gov/zing/srw/diagnostic/"
+			    xmlns:xcql="http://www.loc.gov/zing/cql/xcql/">
+    <srw:version>1.1</srw:version>
+    <srw:numberOfRecords>366</srw:numberOfRecords>
+    <srw:resultSetId>SIDa639955b-59S7433</srw:resultSetId>
+    <srw:records>
+    
+
+
+<srw:record>
+<srw:recordSchema>unimarc</srw:recordSchema>
+<srw:recordPacking>xml</srw:recordPacking>
+<srw:recordData>
+<record>
+<controlfield tag="005">20231122040435.000</controlfield>
+<leader>     cam0 22        450 </leader>
+<controlfield tag="001">147032091</controlfield>
+<controlfield tag="003">http://www.sudoc.fr/147032091</controlfield>
+<datafield tag="035" ind1=" " ind2=" "><subfield code="a">(OCoLC)1244169866</subfield></datafield>
+<datafield tag="100" ind1=" " ind2=" "><subfield code="a">20101004d1972    m  y0frey50      ba</subfield></datafield>
+<datafield tag="101" ind1="0" ind2=" "><subfield code="a">por</subfield>
+<subfield code="a">fre</subfield>
+<subfield code="a">ger</subfield>
+<subfield code="2">639-2</subfield></datafield>
+<datafield tag="105" ind1=" " ind2=" "><subfield code="a">af  ||||010|y</subfield></datafield>
+<datafield tag="106" ind1=" " ind2=" "><subfield code="a">r</subfield></datafield>
+<datafield tag="181" ind1=" " ind2=" "><subfield code="6">z01</subfield>
+<subfield code="c">txt</subfield>
+<subfield code="2">rdacontent</subfield></datafield>
+<datafield tag="181" ind1=" " ind2="1"><subfield code="6">z01</subfield>
+<subfield code="a">i#</subfield>
+<subfield code="b">xxxe##</subfield></datafield>
+<datafield tag="182" ind1=" " ind2=" "><subfield code="6">z01</subfield>
+<subfield code="c">n</subfield>
+<subfield code="2">rdamedia</subfield></datafield>
+<datafield tag="182" ind1=" " ind2="1"><subfield code="6">z01</subfield>
+<subfield code="a">n</subfield></datafield>
+<datafield tag="102" ind1=" " ind2=" "><subfield code="a">PT</subfield></datafield>
+<datafield tag="200" ind1="0" ind2=" "><subfield code="a">4° centenário da 1a. edição de &quot;Os Lusíadas&quot; [de Luis de Camões]: 1572-1972</subfield>
+<subfield code="d">= 4th centenary of the 1st edition of the Lusiads</subfield>
+<subfield code="d">= 4ème centenaire de la 1ère édition des &quot;Lusiades&quot;</subfield>
+<subfield code="d">= Vierhundertjahrfeier der 1. Ausgabe der &quot;Lusiadas&quot;</subfield></datafield>
+<datafield tag="510" ind1="|" ind2=" "><subfield code="a">4ème centenaire de la 1ère édition des Lusiades</subfield></datafield>
+<datafield tag="510" ind1="|" ind2=" "><subfield code="a">4th centenary of the 1st edition of the Lusiads</subfield></datafield>
+<datafield tag="517" ind1="|" ind2=" "><subfield code="a">Quatrième centenaire de la lère. edition des Lusiades, 1572-1972</subfield></datafield>
+<datafield tag="517" ind1="|" ind2=" "><subfield code="a">Fourth centenary of the 1st edition of the Lusiads, 1572-1972</subfield></datafield>
+<datafield tag="517" ind1="|" ind2=" "><subfield code="a">Quarto centenário da 1a. edição de Os Lusíadas, 1572-1972</subfield></datafield>
+<datafield tag="517" ind1="|" ind2=" "><subfield code="a">Vierhundertjahrfeier der 1 Ausgabe der &quot;Lusiadas&quot;</subfield></datafield>
+<datafield tag="517" ind1="|" ind2=" "><subfield code="a">Os lusiades de Luis de Camões</subfield></datafield>
+<datafield tag="702" ind1=" " ind2="1"><subfield code="3">086204246</subfield>
+<subfield code="a">Camões</subfield>
+<subfield code="b">Luís de</subfield>
+<subfield code="f">1525?-1580</subfield></datafield>
+<datafield tag="801" ind1=" " ind2="3"><subfield code="a">FR</subfield>
+<subfield code="b">Abes</subfield>
+<subfield code="c">20231122</subfield>
+<subfield code="g">AFNOR</subfield></datafield>
+<datafield tag="317" ind1=" " ind2=" "><subfield code="5">751063001:406433348</subfield>
+<subfield code="a">Michel Déon</subfield></datafield>
+<datafield tag="210" ind1=" " ind2=" "><subfield code="a">Lisboa</subfield>
+<subfield code="c">Secretaria de Estado da Informação e Turismo</subfield>
+<subfield code="d">[1972]</subfield></datafield>
+<datafield tag="215" ind1=" " ind2=" "><subfield code="a">1 portfolio ([1] f., [12] f. de pl.)</subfield>
+<subfield code="c">ill en noir et blanc</subfield>
+<subfield code="d">42 cm</subfield></datafield>
+<datafield tag="604" ind1=" " ind2=" "><subfield code="3">028422244</subfield>
+<subfield code="a">Camões, Luís de (1525?-1580)</subfield>
+<subfield code="t">Os Lusíadas</subfield>
+<subfield code="3">027791785</subfield>
+<subfield code="2">rameau</subfield></datafield>
+<datafield tag="300" ind1=" " ind2=" "><subfield code="a">Ce portfolio contient les agrandissements des 12 estampes illustrant la plus célèbre des éditions des &quot;Lusiades&quot;, due à Morgado de Mateus,  limitée à 210 exemplaires et terminée en 1837</subfield></datafield>
+<datafield tag="300" ind1=" " ind2=" "><subfield code="a">Le portfolio a pour titre : Os lusiades de Luis de Camões</subfield></datafield>
+<datafield tag="680" ind1=" " ind2=" "><subfield code="a">PQ9210</subfield>
+<subfield code="b">.Q3</subfield></datafield>
+<datafield tag="801" ind1=" " ind2="0"><subfield code="b">DLC</subfield>
+<subfield code="g">AACR2</subfield></datafield>
+<datafield tag="801" ind1=" " ind2="1"><subfield code="b">CarP</subfield>
+<subfield code="g">AACR2</subfield></datafield>
+<datafield tag="930" ind1=" " ind2=" "><subfield code="5">751063001:406433348</subfield>
+<subfield code="b">751063001</subfield>
+<subfield code="a">Fol N. S. 1539</subfield>
+<subfield code="j">g</subfield></datafield>
+<datafield tag="999" ind1=" " ind2=" "><subfield code="5">751063001:406433348</subfield>
+<subfield code="z">M/D.188540</subfield></datafield></record></srw:recordData><srw:recordPosition>1</srw:recordPosition>
+</srw:record>
+</srw:records>
+    <srw:echoedSearchRetrieveRequest>
+	<srw:version>1.1</srw:version>
+	<srw:query>mti%3Dlusiadas</srw:query>
+	<srw:xQuery><xcql:searchClause><xcql:index>mti</xcql:index><xcql:relation><xcql:value>=</xcql:value></xcql:relation><xcql:term>lusiadas</xcql:term></xcql:searchClause></srw:xQuery>
+	<startRecord>1</startRecord>
+	<maximumRecords>1</maximumRecords>
+	<srw:recordPacking>xml</srw:recordPacking>
+	<srw:recordSchema>unimarc</srw:recordSchema>
+	
+	<srw:stylesheet>https://www.sudoc.abes.fr/cbs/sru/DB=2.1/?xsl=searchRetrieveResponse</srw:stylesheet>
+    </srw:echoedSearchRetrieveRequest>
+    <diag:diagnostics>
+        <diag:uri>info:srw/diagnostic/1/0</diag:uri>
+	
+	
+    </diag:diagnostics>
+    <srw:extraResponseData>
+	<rob:authenticationToken xmlns:rob="info:srw/extension/2/auth-1.0">U10178,Klecteurweb,D2.1,Ea639955b-59,I250,B341720009,SY,QDEF,A%5C9008+1,,J,H2-26,,29,,34,,39,,44,,49-50,,53-78,,80-87,NLECTEUR+PSI,R10.34.103.198,FN,MNNN</rob:authenticationToken>
+        <mg:resultGrouping xmlns:mg="info:srw/extension/5/metadata-grouping-v1.0">
+	    
+	    <mg:grouping key="9001" description="Type de document"></mg:grouping>
+	    
+	    <mg:grouping key="9000" description="Année de publication"></mg:grouping>
+	    
+	    <mg:grouping key="9005" description="Pays de publication"></mg:grouping>
+	    
+	    <mg:grouping key="9004" description="Langue du document"></mg:grouping>
+	    
+
+	
+	</mg:resultGrouping>
+	
+    </srw:extraResponseData>
+</srw:searchRetrieveResponse>
